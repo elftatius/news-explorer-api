@@ -1,0 +1,20 @@
+{
+  "name": "news-explorer-api",
+  "version": "1.0.0",
+  "description": "News aggregator with add to favorites function",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elftatius/news-explorer-api.git"
+  },
+  "author": "Tkachenko Tatyana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elftatius/news-explorer-api/issues"
+  },
+  "homepage": "https://github.com/elftatius/news-explorer-api#readme"
+}
