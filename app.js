@@ -9,6 +9,7 @@ const { errors } = require('celebrate');
 // const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const usersRouter = require('./routes/users');
+const articlesRouter = require('./routes/articles');
 
 const app = express();
 const port = 3000;
@@ -26,6 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(requestLogger);
 
 app.use('/', usersRouter);
+app.use('/articles', articlesRouter);
 
 // app.use(errorLogger);
 
