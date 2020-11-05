@@ -26,8 +26,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
 
-app.use('/', usersRouter);
-app.use('/articles', articlesRouter);
+app.use('/api/', usersRouter);
+app.use('/api/articles', articlesRouter);
 
 app.use(errorLogger);
 
