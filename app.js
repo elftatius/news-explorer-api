@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 
+const { limiter } = require('./utils/rate-limiter');
+
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const usersRouter = require('./routes/users');
@@ -19,6 +21,8 @@ mongoose.connect(process.env.MONGO_PATH, {
   useCreateIndex: true,
   useFindAndModify: false,
 });
+
+app.use(limiter);
 
 app.use(cors());
 app.use(bodyParser.json());
