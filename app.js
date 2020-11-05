@@ -14,7 +14,7 @@ const articlesRouter = require('./routes/articles');
 const app = express();
 const port = 3000;
 
-mongoose.connect('mongodb://localhost:27017/newsdb', {
+mongoose.connect(process.env.MONGO_PATH, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
