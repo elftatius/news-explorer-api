@@ -9,6 +9,7 @@ const { errors } = require('celebrate');
 const { limiter } = require('./utils/rate-limiter');
 
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const centralizedErrorHandling = require('./middlewares/error-handling');
 
 const NotFoundError = require('./errors/not-found-err');
 
@@ -43,17 +44,6 @@ app.use(errorLogger);
 
 app.use(errors());
 
-app.use((err, req, res, next) => {
-  const { statusCode = 500, message } = err;
-
-  res
-    .status(statusCode)
-    .send({
-      message: statusCode === 500
-        ? 'На сервере произошла ошибка'
-        : message,
-    });
-  next();
-});
+app.use(centralizedErrorHandling);
 
 app.listen(port, () => {});
