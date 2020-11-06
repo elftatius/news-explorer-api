@@ -28,7 +28,7 @@ module.exports.deleteArticle = (req, res, next) => {
       } else if (article.owner.toString() !== req.user._id) {
         throw new AuthorizationError();
       }
-      Article.findByIdAndRemove(req.params.id)
+      Article.deleteOne(article)
         .then((articleToDelete) => {
           res.send({ data: articleToDelete });
         });
