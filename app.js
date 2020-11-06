@@ -10,6 +10,8 @@ const { limiter } = require('./utils/rate-limiter');
 
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
+const NotFoundError = require('./errors/not-found-err');
+
 const usersRouter = require('./routes/users');
 const articlesRouter = require('./routes/articles');
 
@@ -33,6 +35,10 @@ app.use(requestLogger);
 app.use('/api/', usersRouter);
 app.use('/api/articles', articlesRouter);
 
+app.all('*', () => {
+  throw new NotFoundError('Запрашиваемый ресурс не найден');
+});
+
 app.use(errorLogger);
 
 app.use(errors());
@@ -48,10 +54,6 @@ app.use((err, req, res, next) => {
         : message,
     });
   next();
-});
-
-app.all('*', (req, res) => {
-  res.status(404).send({ message: 'Запрашиваемый ресурс не найден' });
 });
 
 app.listen(port, () => {});
