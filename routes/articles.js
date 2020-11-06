@@ -8,7 +8,7 @@ const { createArticle, getArticles, deleteArticle } = require('../controllers/ar
 
 router.use(auth);
 
-router.post('/', celebrate({
+router.post('/articles', celebrate({
   body: Joi.object().keys({
     keyword: Joi.string().required(),
     title: Joi.string().required(),
@@ -20,9 +20,9 @@ router.post('/', celebrate({
   }),
 }), createArticle);
 
-router.get('/', getArticles);
+router.get('/articles', getArticles);
 
-router.delete('/:id', celebrate({
+router.delete('/articles/:id', celebrate({
   params: Joi.object().keys({
     id: Joi.string().length(24).hex(),
   }),

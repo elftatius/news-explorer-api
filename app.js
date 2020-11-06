@@ -13,8 +13,7 @@ const centralizedErrorHandling = require('./middlewares/error-handling');
 
 const NotFoundError = require('./errors/not-found-err');
 
-const usersRouter = require('./routes/users');
-const articlesRouter = require('./routes/articles');
+const router = require('./routes');
 
 const app = express();
 const port = 3000;
@@ -33,8 +32,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
 
-app.use('/api/', usersRouter);
-app.use('/api/articles', articlesRouter);
+app.use('/api/', router);
 
 app.all('*', () => {
   throw new NotFoundError('Запрашиваемый ресурс не найден');
