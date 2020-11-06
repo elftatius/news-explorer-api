@@ -5,6 +5,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
+const helmet = require('helmet');
 
 const { limiter } = require('./utils/rate-limiter');
 
@@ -25,6 +26,8 @@ mongoose.connect(process.env === 'production' ? process.env.MONGO_PATH : 'mongod
 });
 
 app.use(limiter);
+
+app.use(helmet());
 
 app.use(cors());
 app.use(bodyParser.json());
