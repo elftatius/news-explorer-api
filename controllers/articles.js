@@ -15,7 +15,7 @@ module.exports.createArticle = (req, res, next) => {
 };
 
 module.exports.getArticles = (req, res, next) => {
-  Article.find({})
+  Article.find({ owner: req.user._id })
     .then((articles) => res.send({ data: articles }))
     .catch(next);
 };
